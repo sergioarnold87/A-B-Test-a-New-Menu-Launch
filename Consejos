@@ -1,0 +1,38 @@
+Agregado y Exportación
+Le recomendamos que guarde su base de datos de transacciones agregada como un archivo separado para reducir aún más el tiempo de desarrollo. No debería necesitar volver a agregar la base de datos de transacciones cada vez que desee probar un nuevo flujo de trabajo.
+
+Creando una variable de semana
+Al calcular la columna de la semana, asigne la semana 1 a la primera semana del período de prueba, por lo que la variable week_begin para la semana 1 sería la fecha de inicio de la prueba. Esto hará que las semanas anteriores al período de prueba sean negativas, lo cual está perfectamente bien. Vea aquí . Si el primer enlace no funciona, haga clic aquí para ver un ejemplo de cómo calcular la variable de la semana usando una herramienta de fórmula en Alteryx.
+
+Numero de semanas
+La herramienta de tendencia se utiliza para crear variables de tendencia y estacionalidad para usarlas como variables de control. Para hacer esto, necesita al menos 52 semanas de datos, más el número de semanas que seleccione en la herramienta para calcular la tendencia, antes del comienzo de la fecha de inicio de la prueba. En la lección 4, usó 6 semanas para calcular la tendencia, por lo que necesitaba 58 semanas antes de la fecha de inicio de la prueba. Para el proyecto, se le pide que use 12 semanas para calcular la tendencia, por lo que necesitará 64 semanas de datos antes de la fecha de inicio de la prueba. Dado que la prueba dura 12 semanas, esto significa que necesitará un total 76 weeksde datos.
+
+Su filtro al comienzo de su flujo de trabajo debe retroceder 76 semanas desde el final del período de prueba 2016-julio-21. En Alteryx, la expresión shuold parece[Invoice Date]>="2015-02-06" AND [Invoice Date]<"2016-07-22"
+
+Todas las tiendas deben tener 76 semanas de datos.
+
+Herramienta de tendencia AB
+La fecha de inicio de la prueba es el 29 de abril de 2016.
+
+La métrica de rendimiento de esta herramienta es el recuento de facturas por semana que representa el tráfico peatonal semanal. Tenías que crear esta variable con una herramienta de resumen.
+
+Herramienta de controles AB
+Debe utilizar 3 medidas numéricas para hacer coincidir las reservas de tratamiento y control.
+
+Tendencia
+Estacionalidad
+AvgMonthSales (Esto debe determinarse observando la correlación entre las variables numéricas apropiadas en el archivo de tiendas de tostadores redondos AvgMonthSales y Sq_ft con el margen bruto de la métrica de rendimiento). Esta variable se encuentra en el archivo round-roaster-stores.csv
+Herramienta de análisis AB
+Asegúrese de usar weekly gross marginpor tienda en todos los cálculos de elevación y no en las ventas totales. Sus datos tienen un margen bruto, pero tendrá que usar una herramienta de resumen para obtener un margen bruto semanal por tienda.
+
+Pasos
+Filtrar los datos al rango de fechas adecuado
+Agregue los datos para obtener el margen bruto semanal y el recuento de tráfico semanal (recuento de facturas únicas)
+Calcule la tendencia y la estacionalidad con la herramienta AB Trend
+Etiquetar los datos como almacenes de tratamiento y control
+Calcule la correlación entre otras medidas numéricas y la métrica de desempeño (margen bruto)
+Haga coincidir el tratamiento para controlar las tiendas por región utilizando la herramienta de controles AB
+Calcule la elevación desde el control hasta el almacén de tratamiento con la herramienta de análisis AB
+Si encuentra errores en Alteryx o resultados inesperados de una herramienta, tenemos una guía para ayudarlo a descubrir qué está sucediendo.
+
+Guía de depuración de Alteryx: consulte la pestaña Recursos en el panel más a la izquierda de su aula para obtener un PDF descargable de la Guía de depuración de Alteryx
